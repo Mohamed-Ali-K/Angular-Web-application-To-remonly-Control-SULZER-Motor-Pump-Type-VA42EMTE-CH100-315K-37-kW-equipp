@@ -1,0 +1,26 @@
+<div class="navtabs-container" fxShow fxHide.lg="false" fxHide.xs="true">
+    <nav mat-tab-nav-bar fxFlex fxLayout fxLayoutAlign="center center" color="accent" backgroundColor="primary" >
+
+      <a mat-tab-link
+        routerLink="/dashboard"
+        routerLinkActive #home="routerLinkActive"
+        [active]="home.isActive" >
+        L'état de la pompe
+      </a>
+
+      <a mat-tab-link *ngIf= "isAuth"
+        routerLink="/control"
+        routerLinkActive #control="routerLinkActive"
+        [active]="control.isActive">
+        <span >Controle la pompes</span>
+      </a>
+
+      <a mat-tab-link *ngIf= "isAuth"
+        routerLink="/meteo"
+        routerLinkActive #maree="routerLinkActive"
+        [active]="maree.isActive">
+        Marée
+      </a>
+
+      </nav>
+</div>

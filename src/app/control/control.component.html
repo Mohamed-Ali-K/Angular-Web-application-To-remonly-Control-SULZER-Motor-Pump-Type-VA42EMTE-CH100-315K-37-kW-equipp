@@ -1,0 +1,182 @@
+<div class="grid-container">
+    <h1 class="mat-h1">Dashboard</h1>
+    <mat-grid-list cols="2" rowHeight="400px">
+      <mat-grid-tile [colspan]="cols" [rowspan]="1">
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>Initialisation
+
+              <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" xPosition="before">
+                <button mat-menu-item>Expand</button>
+                <button mat-menu-item>Remove</button>
+              </mat-menu>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content" >
+            <mat-list >
+              <mat-list-item >
+                <div class="empty-yoo" fxLayout="row"  fxLayoutAlign="start center">
+                <mat-icon matListIcon>cached</mat-icon>
+                <p>Connecter:</p>
+              </div>
+              <div class="empty-yoo"></div>
+                <div fxLayout="row" class="buttonnItem">
+                  <button mat-raised-button [color]="startcolor" (click)="connectertoggle()">{{startKey}}</button>
+                </div>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item>
+                  <div class="empty-yoo" fxLayout="row"  fxLayoutAlign="start center">
+                      <mat-icon matListIcon>power_settings_new</mat-icon>
+                      <p>Démarré:</p>
+                    </div>
+                    <div class="empty-yoo"></div>
+                      <div fxLayout="row" class="buttonnItem">
+                        <button mat-raised-button [color]="marchecolor"  [disabled]="disableall" (click)="marchetoggle()">{{marcheKey}}</button>
+                      </div>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item>
+                  <div class="empty-yoo" fxLayout="row"  fxLayoutAlign="start center">
+                      <mat-icon matListIcon>desktop_windows</mat-icon>
+                      <p>Moniteur:</p>
+                    </div>
+                    <div class="empty-yoo"></div>
+                      <div fxLayout="row" class="buttonnItem">
+                        <button mat-raised-button [color]="moniteurcolor" [disabled]="disableall" (click)="moniteurtoggle()">{{moniteurKey}}</button>
+                      </div>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item>
+                  <div class="empty-yoo" fxLayout="row"  fxLayoutAlign="start center">
+                      <mat-icon matListIcon>query_builder</mat-icon>
+                      <p>Temps :</p>
+                    </div>
+                    <div class="empty-yoo">
+                      <mat-form-field class="example-full-width">
+                        <input #times  [(value)]="tempskey" type="number" matInput placeholder="temps en secondes">
+                      </mat-form-field>
+                    </div>
+                    <div fxLayout="row" class="buttonnItem">
+                      <button mat-raised-button  [disabled]="disableall" (click)="Updatetime(times.value)">Update</button>
+                    </div>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item>
+                  <div class="empty-yoo" fxLayout="row"  fxLayoutAlign="start center">
+                      <mat-icon matListIcon>wb_incandescent</mat-icon>
+                      <p>Lampe :</p>
+                    </div>
+                    <div class="empty-yoo"></div>
+                      <div fxLayout="row" class="buttonnItem">
+                        <button mat-raised-button [color]="lampecolor" [disabled]="disableall" (click)="lampetoggle()">{{lampeKey}}</button>
+                      </div>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+            </mat-list>
+          </mat-card-content>
+          <mat-card-footer></mat-card-footer>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile  [colspan]="cols" [rowspan]="1">
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>les statuts basique du pompe
+
+              <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" xPosition="before">
+                <button mat-menu-item>Expand</button>
+                <button mat-menu-item>Remove</button>
+              </mat-menu>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content" >
+            <mat-divider></mat-divider>
+            <div fxLayoutAlign="center center">
+              <button mat-fab color="accent">
+                <h3 class=".mat-body .mat-body-1 strong poursentage" fxLayoutAlign="center center" >{{(frequance * 100) / 50 }} %</h3>
+              </button>
+              <button mat-fab color="primary">
+                <h1 class="mat-display-2 mat-h2 strong" fxLayoutAlign="center center" >{{frequance}} Hz</h1>
+              </button>
+            </div>
+            <mat-divider></mat-divider>
+            <div fxLayout="row" fxLayoutAlign="center" >
+              <div >
+                <button (click)="frequanceMin()" mat-raised-button color="accent">
+                  <mat-icon aria-label="Example icon-button with a heart icon" >arrow_left</mat-icon>
+                </button>
+              </div>
+              <mat-divider vertical ></mat-divider>
+              <div class="empty-yoo"></div>
+              <mat-divider vertical ></mat-divider>
+              <div>
+                <button (click)="frequanceMax()" mat-raised-button color="accent">
+                  <mat-icon aria-label="Example icon-button with a heart icon" >arrow_right</mat-icon>
+                </button>
+              </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div>
+              <div>
+              <h1 class="mat-h1">vitesse constant</h1>
+            </div>
+              <div>
+              <mat-button-toggle-group  name="fontStyle" aria-label="Font Style">
+                <button mat-raised-button [color]="S3color" (click)="vitesscontante1()">20 Hz</button>
+                <button mat-raised-button [color]="NOvitesscolor" (click)="novitessconstante()">OFF</button>
+                <button mat-raised-button [color]="S4color" (click)="vitesscontante2()">30 Hz</button>
+              </mat-button-toggle-group>
+            </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="cols" [rowspan]="1">
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>Frequance du Moteur du Pompe P60
+
+              <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" xPosition="before">
+                <button mat-menu-item>Expand</button>
+                <button mat-menu-item>Remove</button>
+              </mat-menu>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content" >
+            <kendo-radialgauge [pointer]="{ value: frequance }" style="width: 100%; height: 100%;" >
+              <kendo-radialgauge-scale [minorUnit]="0" [majorUnit]="5" [max]="50">
+                <kendo-radialgauge-scale-ranges>
+                  <kendo-radialgauge-scale-range [from]="0" [to]="45" color="#00FF00"></kendo-radialgauge-scale-range>
+                  <kendo-radialgauge-scale-range [from]="45" [to]="48" color="#ff7a00"></kendo-radialgauge-scale-range>
+                  <kendo-radialgauge-scale-range [from]="48" [to]="50" color="#c20000"></kendo-radialgauge-scale-range>
+                </kendo-radialgauge-scale-ranges>
+              </kendo-radialgauge-scale>
+            </kendo-radialgauge>
+          </mat-card-content>
+          <mat-card-footer>
+            <p > Frequance du Moteur est : {{slider.value}} Hz </p>
+            <mat-slider
+                      thumbLabel
+                      #slider
+                      [(value)]='frequance'
+                      [displayWith]="formatLabel"
+                      tickInterval="auto"
+                      step="1"
+                      min="14"
+                      max="50"
+                      (input)="onInputChange($event)"
+                      ></mat-slider>
+          </mat-card-footer>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>

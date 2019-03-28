@@ -1,0 +1,56 @@
+.grid-container {
+  margin: 20px;
+}
+
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  margin: 0;
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+  height: 80%;
+}
+.k-gauge {
+  display: block;
+}
+
+mat-card-footer {
+  text-align: center;
+}
+.mat-card-actions, .mat-card-content, .mat-card-subtitle {
+  display: block;
+  margin-bottom: 0px;
+}
+.empty--yoo{
+  width: 25%;
+}
+.itamati{
+  width: 100%;
+  height: 95%;
+}
+.listett{
+  height: 100%;
+  width: 100%;
+}
+mat-list{
+  height: 100%;
+}
+.informationett{
+  height: 100%;
+  width: 60%;
+  margin: 0;
+}
+.mat-line{
+  margin: 0%;
+}

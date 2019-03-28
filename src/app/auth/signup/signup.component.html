@@ -1,0 +1,56 @@
+<section class="signup-from">
+  <form
+  fxLayout="column"
+  fxLayoutGap="10px"
+  fxLayoutAlign="center center "
+  #f="ngForm"
+  (ngSubmit)="onSubmit(f)" >
+
+    <mat-form-field>
+      <input
+      type="email"
+      matInput
+      placeholder="Adresse Email"
+      ngModel name="email"
+      required
+      #emailInput="ngModel"
+      >
+      <mat-error *ngIf="emailInput.hasError('required')" >ce champ ne doit pas être vide </mat-error>
+      <mat-error *ngIf="!emailInput.hasError('required')" >email est invalide</mat-error>
+    </mat-form-field>
+
+    <mat-form-field hintLabel="doit contenir au moins 6 caractères">
+      <input
+      type="password"
+      matInput
+      placeholder="Mote de passe"
+      ngModel name ="password"
+      required
+      minlength="6"
+      #pwInput="ngModel"
+      >
+      <mat-hint align="end">{{ pwInput.value?.length }} /6</mat-hint>
+      <mat-error>ce champ doit contenir au moins 6 caractères!</mat-error>
+    </mat-form-field>
+
+
+    <mat-checkbox
+    labelPosition="before"
+    required
+    ngModel
+    name="agree"
+    color="primary"
+    >
+    Agree to terms and conditions
+    </mat-checkbox>
+
+
+    <button
+    type="submit"
+    mat-raised-button
+    color="primary"
+    [disabled]="f.invalid"
+    >Valide</button>
+
+  </form>
+</section>

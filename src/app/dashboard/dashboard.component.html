@@ -1,0 +1,236 @@
+<div class="grid-container">
+    <h1 class="mat-h1">Dashboard</h1>
+    <mat-grid-list cols="2" rowHeight="400px">
+        <mat-grid-tile [colspan]="cols" [rowspan]="1">
+            <mat-card class="dashboard-card">
+                <mat-card-header>
+                    <mat-card-title>les statuts basique du pompe
+                        <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+                        <mat-menu #menu="matMenu" xPosition="before">
+                            <button mat-menu-item>Expand</button>
+                            <button mat-menu-item>Remove</button>
+                        </mat-menu>
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="dashboard-card-content" fxFlexFill>
+                    <div fxLayout="column"  class="listett">
+                        <mat-list>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                              <div class="itamati" fxLayout="row" fxLayoutAlign="center center">
+                                <div *ngIf="(ready | async) == 'Pret'; else elseBlock">
+                                    <img matListAvatar src="assets/images/Green.png">
+                                </div>
+                                <ng-template #elseBlock><img matListAvatar src="assets/images/red.png"></ng-template>
+                                <div class="empty--yoo"></div>
+                                <div class="informationett">
+                                    <h3 matLine> la Pompe P60 est pret pour la démarrer  </h3>
+                                    <p matLine>
+                                        <span> {{ready | async }} </span>
+                                    </p>
+                                </div>
+                              </div>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                              <div class="itamati" fxLayout="row" fxLayoutAlign="center center">
+                                <div *ngIf="(thermistors | async) == 'OFF'; else elseBlock">
+                                    <img matListAvatar src="assets/images/Green.png">
+                                </div>
+                                <ng-template #elseBlock><img matListAvatar src="assets/images/red.png"></ng-template>
+                                <div class="empty--yoo"></div>
+                                <div class="informationett">
+                                    <h3 matLine> protection contre l'élevation de la temperature </h3>
+                                    <p matLine>
+                                        <span>  thermistors </span>
+                                    </p>
+                                </div>
+                              </div>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <div class="itamati" fxLayout="row" fxLayoutAlign="center center">
+                                    <div *ngIf="(inUse | async) == 'On Marche'; else elseBlock">
+                                        <img matListAvatar src="assets/images/Green.png">
+                                    </div>
+                                    <ng-template #elseBlock><img matListAvatar src="assets/images/red.png"></ng-template>
+                                    <div class="empty--yoo"></div>
+                                    <div class="informationett">
+                                        <h3 matLine> pompe est en marche / arrete   </h3>
+                                        <p matLine>
+                                            <span> {{inUse | async }}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <div class="itamati" fxLayout="row" fxLayoutAlign="center center">
+                                    <div fxLayoutAlign="center start" *ngIf="(defaut | async) == 'Bien'; else elseBlock">
+                                        <img matListAvatar src="assets/images/Green.png">
+                                    </div>
+                                    <ng-template #elseBlock><img matListAvatar src="assets/images/red.png"></ng-template>
+                                    <div class="empty--yoo"></div>
+                                    <div class="informationett">
+                                        <h3 matLine>présence d'un defaut general</h3>
+                                        <p matLine>
+                                            <span>  {{defaut | async }}  </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <div class="itamati" fxLayout="row" fxLayoutAlign="center center">
+                                    <div fxLayoutAlign="center start" *ngIf="(lampe | async) == 'ON'; else elseBlock">
+                                        <img matListAvatar src="assets/images/Green.png">
+                                    </div>
+                                    <ng-template #elseBlock><img matListAvatar src="assets/images/red.png"></ng-template>
+                                    <div class="empty--yoo"></div>
+                                    <div class="informationett">
+                                        <h3 matLine>l'éclairage extérieur est allumé/éteint  </h3>
+                                        <p matLine>
+                                            <span>Eclairage extérieur : {{lampext}}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </mat-list-item>
+                        </mat-list>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="cols" [rowspan]="2">
+            <mat-card class="dashboard-card">
+                <mat-card-header>
+                    <mat-card-title>Le niveau d'eau Dans puisard
+                        <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+                        <mat-menu #menu="matMenu" xPosition="before">
+                            <button mat-menu-item>Expand</button>
+                            <button mat-menu-item>Remove</button>
+                        </mat-menu>
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="dashboard-card-content">
+
+                    <kendo-lineargauge [pointer]="{ value: distance | async, shape: 'arrow', size : 20, color: '#A9A9A9' }" style="width: 100%; height: 100%;">
+                        <kendo-lineargauge-scale [minorUnit]="1" [majorUnit]="10" [max]="180" [reverse]="false">
+                            <kendo-lineargauge-scale-ranges>
+                                <kendo-lineargauge-scale-labels [color]="'#000000'" [visible]="true">
+
+                                </kendo-lineargauge-scale-labels>
+                                <kendo-lineargauge-scale-range [from]="0" [to]="80" color="#c20000">
+                                </kendo-lineargauge-scale-range>
+                                <kendo-lineargauge-scale-range [from]="80" [to]="100" color="#ff7a00">
+                                </kendo-lineargauge-scale-range>
+                                <kendo-lineargauge-scale-range [from]="100" [to]="180" color="#00FF00">
+                                </kendo-lineargauge-scale-range>
+                                <kendo-lineargauge-scale-labels [visible]="true">
+                                </kendo-lineargauge-scale-labels>
+                            </kendo-lineargauge-scale-ranges>
+                        </kendo-lineargauge-scale>
+                    </kendo-lineargauge>
+                </mat-card-content>
+                <mat-card-footer> le niveau de l'eau de mer est : {{distance | async}} Cm </mat-card-footer>
+            </mat-card>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="cols" [rowspan]="1">
+            <mat-card class="dashboard-card">
+                <mat-card-header>
+                    <mat-card-title> le Vitesse du Moteur du Pompe P60
+                        <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                        <mat-menu #menu="matMenu" xPosition="before">
+                            <button mat-menu-item>Expand</button>
+                            <button mat-menu-item>Remove</button>
+                        </mat-menu>
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="dashboard-card-content">
+                    <kendo-radialgauge [pointer]="{ value: vitesse | async }" style="width: 100%; height: 100%;">
+                        <kendo-radialgauge-scale [minorUnit]="50" [majorUnit]="100" [max]="1500">
+                            <kendo-radialgauge-scale-ranges>
+                                <kendo-radialgauge-scale-range [from]="0" [to]="1100" color="#00FF00">
+                                </kendo-radialgauge-scale-range>
+                                <kendo-radialgauge-scale-range [from]="1100" [to]="1450" color="#ff7a00">
+                                </kendo-radialgauge-scale-range>
+                                <kendo-radialgauge-scale-range [from]="1450" [to]="1500" color="#c20000">
+                                </kendo-radialgauge-scale-range>
+                            </kendo-radialgauge-scale-ranges>
+                        </kendo-radialgauge-scale>
+                    </kendo-radialgauge>
+                </mat-card-content>
+                <mat-card-footer> le vitesse de Moteur est : {{vitesse | async}} tr/min</mat-card-footer>
+            </mat-card>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="cols" [rowspan]="1">
+            <mat-card class="dashboard-card">
+                <mat-card-header>
+                    <mat-card-title> Frequance du Moteur du Pompe P60
+                        <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                        <mat-menu #menu="matMenu" xPosition="before">
+                            <button mat-menu-item>Expand</button>
+                            <button mat-menu-item>Remove</button>
+                        </mat-menu>
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="dashboard-card-content">
+                    <kendo-radialgauge [pointer]="{ value: frequance | async }" style="width: 100%; height: 100%;">
+                        <kendo-radialgauge-scale [minorUnit]="0" [majorUnit]="5" [max]="50">
+                            <kendo-radialgauge-scale-ranges>
+                                <kendo-radialgauge-scale-range [from]="0" [to]="45" color="#00FF00">
+                                </kendo-radialgauge-scale-range>
+                                <kendo-radialgauge-scale-range [from]="45" [to]="48" color="#ff7a00">
+                                </kendo-radialgauge-scale-range>
+                                <kendo-radialgauge-scale-range [from]="48" [to]="50" color="#c20000">
+                                </kendo-radialgauge-scale-range>
+                            </kendo-radialgauge-scale-ranges>
+                        </kendo-radialgauge-scale>
+                    </kendo-radialgauge>
+                </mat-card-content>
+                <mat-card-footer> Frequance du Moteur est : {{frequance | async}} Hz</mat-card-footer>
+            </mat-card>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="cols" [rowspan]="1">
+            <mat-card class="dashboard-card">
+                <mat-card-header>
+                    <mat-card-title> le courant du Moteur du Pompe P60
+                        <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                        <mat-menu #menu="matMenu" xPosition="before">
+                            <button mat-menu-item>Expand</button>
+                            <button mat-menu-item>Remove</button>
+                        </mat-menu>
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="dashboard-card-content">
+                    <kendo-radialgauge [pointer]="{ value: courant | async }" style="width: 100%; height: 100%;">
+                        <kendo-radialgauge-scale [minorUnit]="0" [majorUnit]="10" [max]="60">
+                            <kendo-radialgauge-scale-ranges>
+                                <kendo-radialgauge-scale-range [from]="0" [to]="55" color="#00FF00">
+                                </kendo-radialgauge-scale-range>
+                                <kendo-radialgauge-scale-range [from]="55" [to]="59" color="#ff7a00">
+                                </kendo-radialgauge-scale-range>
+                                <kendo-radialgauge-scale-range [from]="59" [to]="60" color="#c20000">
+                                </kendo-radialgauge-scale-range>
+                            </kendo-radialgauge-scale-ranges>
+                        </kendo-radialgauge-scale>
+                    </kendo-radialgauge>
+                </mat-card-content>
+                <mat-card-footer> le courant de Moteur est : {{courant | async}} A</mat-card-footer>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
