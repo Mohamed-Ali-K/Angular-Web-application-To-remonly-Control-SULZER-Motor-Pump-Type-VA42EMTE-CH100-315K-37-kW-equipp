@@ -1,4 +1,4 @@
-# P60
+# Angular Web application To remonly Control SULZER Motor Pump Type VA42EMTE CH100-315K (37 kW) equipping with an ABB ASC580 R4 AC Driver. Using an ESP32
 Remotely controlled a SULZER motor pump Type VA42EMTE CH100-315K (37 kW) equipping with an ABB ASC580 R4 AC Driver. Using an ESP32 microcontroller and a web application
 
 • Technology used:
