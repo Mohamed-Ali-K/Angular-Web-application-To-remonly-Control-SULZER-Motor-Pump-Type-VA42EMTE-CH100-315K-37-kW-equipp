@@ -1,4 +1,42 @@
 # P60
+Remotely controlled a SULZER motor pump Type VA42EMTE CH100-315K (37 kW) equipping with an ABB ASC580 R4 AC Driver. Using an ESP32 microcontroller and a web application
+
+• Technology used:
+
+• The web application: Angular 8, Firebase, Git, Angular Material, Realtime Database
+
+• Some electronic knowledge. Choosing the compounds (resistance, condenser relay...) and welding the components
+
+• C++ to program l’ESP32
+
+Objective:
+
+➢ Starts and stops the remote motor pump through the web application
+
+➢ Increase and decrease the frequency of the moto pump
+
+➢ Know the frequency and current and the Speed in real time
+
+➢ Knowing the sea water level in the basin where motor pump is installed
+
+➢ Stop the motor pump in case of distrust (overheating, motor pump cavitation, etc.)
+
+➢ Notify the operator in a breakdown
+
+Secures the application with a login and password
+01/09
+
+
+
+https://sudpotassep60.web.app/login
+
+Login : test@test.com
+
+password : test1234
+
+ESP32 repository : 
+
+https://github.com/Mohamed-Ali-K/LOW-VOLTAGE-AC-DRIVES-ACS580-Or-ACS880-ESP32-control-Driver-using-FierBASe
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.5.
 
